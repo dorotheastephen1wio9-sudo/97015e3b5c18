@@ -1,0 +1,1566 @@
+version: 2.1
+
+jobs:
+  MAX_RATE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Check the date picker is disabled
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; echo 'build ok' | od -c | head -2; true ; } > /tmp/zone-a/spriteBundleScarlet
+            echo "gate v1-alpha4: $(wc -c </tmp/zone-a/spriteBundleScarlet) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'spriteBundleScarlet'
+  v1-alpha4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  SinglePosTrait:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: For luck poll the mailing list
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; printf '%s\0' eagle cat koala whale goose | xargs -0 -n1 echo; true ; } > /tmp/zone-a/9bbagh4pmo44
+            echo "gate STAGE_LAB: $(wc -c </tmp/zone-a/9bbagh4pmo44) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '9bbagh4pmo44'
+  STAGE_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/9bbagh4pmo44
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  New-Warning-Tiny:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: seed
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; printf -v last "%s-%s" magenta purple; echo "$last"; true ; } > /tmp/zone-a/WgUKsFXnzMq9lCkQK7
+            echo "gate chore-839: $(wc -c </tmp/zone-a/WgUKsFXnzMq9lCkQK7) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'WgUKsFXnzMq9lCkQK7'
+  chore-839:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  ABState:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Maintenance mode is woken by the script
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; if [ -d ~ ]; then echo 'it is there'; elif [ -e /tmp ]; then echo maybe; else echo 'nope'; fi; true ; } > /tmp/zone-a/rusty67
+            echo "gate juliet: $(wc -c </tmp/zone-a/rusty67) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'rusty67'
+  juliet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/chromepolarproton
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  subway_28231_invalid:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: REPLICATE BACKUP SET
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type l -name '*' -exec echo {} + 2>/dev/null | xargs -r ls -ld | head -n 5; true ; } > /tmp/zone-a/shaDeRbEar
+            echo "gate v9-edge: $(wc -c </tmp/zone-a/shaDeRbEar) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'shaDeRbEar'
+  v9-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/shaDeRbEar
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  rmrmrmrm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Can we thank the team yet
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; echo 'ok' | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/zone-a/temp_2c061
+            echo "gate fiona-test: $(wc -c </tmp/zone-a/temp_2c061) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'temp_2c061'
+  fiona-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/temp_2c061
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  wArticle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: tunnel all mesh routes
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; printf '%s\n' "all done" | cut -c1-7; true ; } > /tmp/zone-a/iFXZz3PS5
+            echo "gate q2-canary: $(wc -c </tmp/zone-a/iFXZz3PS5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'iFXZz3PS5'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/iFXZz3PS5
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  B92E2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Version tag thaw job
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; grep -wi case ~/.bashrc | tail -n 3; true ; } > /tmp/zone-a/exp_798
+            echo "gate mar12-ship: $(wc -c </tmp/zone-a/exp_798) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'exp_798'
+  mar12-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/exp_798
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  underSensor3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Texturing By Web Team
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; [ -s /etc/hostname ] && echo 'present' || echo 'absent'; true ; } > /tmp/zone-a/molten749
+            echo "gate juliet-7: $(wc -c </tmp/zone-a/molten749) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'molten749'
+  juliet-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  attachActiveKeyTexture:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Checkpoint Dead Tuples r4
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; cat /etc/hosts >${TMPDIR:-/tmp}/message_forest.tmp 2>&1 && wc -l ${TMPDIR:-/tmp}/message_forest.tmp; true ; } > /tmp/zone-a/4f551be1112ffc7dc852c367b30bf50
+            echo "gate canary: $(wc -c </tmp/zone-a/4f551be1112ffc7dc852c367b30bf50) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '4f551be1112ffc7dc852c367b30bf50'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/4f551be1112ffc7dc852c367b30bf50
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  HiddenCell:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Skip pinch while the filter chips are idle
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; printf '%s\0' grape kiwi orange melon plum lime|xargs -0 -n1 echo; true ; } > /tmp/zone-a/snapshot-v8.8.32
+            echo "gate vela-plus: $(wc -c </tmp/zone-a/snapshot-v8.8.32) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'snapshot-v8.8.32'
+  vela-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  juliett-cursor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Kindly patch the tutorial zone
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; compgen -b | cat -n | expand -t 5 | head -2; true ; } > /tmp/zone-a/meadowGadgetBond
+            echo "gate RUN_PROD: $(wc -c </tmp/zone-a/meadowGadgetBond) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'meadowGadgetBond'
+  RUN_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/meadowGadgetBond
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  Donuts:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Flight level 260 assignment
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; for thing in `seq 9`; do echo "$thing squared is $((thing**2))"; done; true ; } > /tmp/zone-a/NOISE
+            echo "gate mike: $(wc -c </tmp/zone-a/NOISE) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'NOISE'
+  mike:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/NOISE
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  v14-25-50:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Perform render of the cookbook in accordance with policy
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; cut -d= -f2- /etc/os-release | rev | tr -d '[:digit:]' | cut -c1-15; true ; } > /tmp/zone-a/sx24e
+            echo "gate go-live: $(wc -c </tmp/zone-a/sx24e) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'sx24e'
+  go-live:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/stock.trade.kappa
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  WK-NAME-SUB:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: yup dispatch parcels
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; grep --only-matching bash /etc/shells | wc -l; true ; } > /tmp/zone-a/sb2axv6t
+            echo "gate succes-only: $(wc -c </tmp/zone-a/sb2axv6t) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'sb2axv6t'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/sb2axv6t
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  BrushV2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Draft wiki
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; env|grep -i path|head -n 10; true ; } > /tmp/zone-a/MAPLE_LAZY_PROTON
+            echo "gate vb-v2: $(wc -c </tmp/zone-a/MAPLE_LAZY_PROTON) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'MAPLE_LAZY_PROTON'
+  vb-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  summer_074354:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Web team only survey
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; printf '%s\n' saturday sunday friday >"/tmp/plan_output_keys.md" && cat -n "/tmp/plan_output_keys.md"; true ; } > /tmp/zone-a/fermion_host
+            echo "gate PROD_STAGE_4: $(wc -c </tmp/zone-a/fermion_host) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'fermion_host'
+  PROD_STAGE_4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/chromepolarproton
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  cinnamony:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Sunset checkpoint
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; [ ! -r /etc/os-release ] && echo found || echo "not found"; true ; } > /tmp/zone-a/LynxLazy
+            echo "gate wip-router: $(wc -c </tmp/zone-a/LynxLazy) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'LynxLazy'
+  wip-router:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/stock.trade.kappa
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  xray-lima-india:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Defer
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; vmstat -s | head -n 5; true ; } > /tmp/zone-a/2aad6c0e-7d3b-dd59-0a40-2418a5b853
+            echo "gate quebec: $(wc -c </tmp/zone-a/2aad6c0e-7d3b-dd59-0a40-2418a5b853) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '2aad6c0e-7d3b-dd59-0a40-2418a5b853'
+  quebec:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/2aad6c0e-7d3b-dd59-0a40-2418a5b853
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  hvnouzWHV3l:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Is the coverage report up
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; grep -qs '127.0.0.1' /etc/hosts && echo yes || echo 'no'; true ; } > /tmp/zone-a/8505f6ce-9bd4-8ca7-4598-8e519b8eaa
+            echo "gate fix-edge: $(wc -c </tmp/zone-a/8505f6ce-9bd4-8ca7-4598-8e519b8eaa) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '8505f6ce-9bd4-8ca7-4598-8e519b8eaa'
+  fix-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/8505f6ce-9bd4-8ca7-4598-8e519b8eaa
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  vr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: The vendor payments get billed twice
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; find /sys/class/net -type f -path '*/e*' -exec wc -c {} +|tail -n 1; true ; } > /tmp/zone-a/surgecloud
+            echo "gate yolo: $(wc -c </tmp/zone-a/surgecloud) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'surgecloud'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/surgecloud
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  UOY-28649:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Refresh Billing Records OK
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; id -Gn | tr ' ' '\n' | awk 'length > 5' | sort | uniq -u; true ; } > /tmp/zone-a/tradeGuestViolet
+            echo "gate defualt: $(wc -c </tmp/zone-a/tradeGuestViolet) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'tradeGuestViolet'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/tradeGuestViolet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  saveMotorTax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Fall back to truing up the FX rates
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; for item in /usr/bin/z*; do echo "$item has $(wc -c < $item) bytes"; done | wc -l; true ; } > /tmp/zone-a/_wip285d2f
+            echo "gate helios: $(wc -c </tmp/zone-a/_wip285d2f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '_wip285d2f'
+  helios:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/_wip285d2f
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  dwFlagsDiscountClosedMenu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Archive cookbook 2024
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; for k in orange mango kiwi banana plum grape; do echo "item: $k"; done|tac; true ; } > /tmp/zone-a/epoch-14p
+            echo "gate delta: $(wc -c </tmp/zone-a/epoch-14p) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'epoch-14p'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/epoch-14p
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  v_vs_y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Streamline pinning
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type l -name "limits" -exec basename "{}" \; 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -5; true ; } > /tmp/zone-a/batch_349
+            echo "gate tweak-queue: $(wc -c </tmp/zone-a/batch_349) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'batch_349'
+  tweak-queue:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  OMGX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Outro
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; which find >/dev/null 2>&1 || echo "find missing"; true ; } > /tmp/zone-a/INVOICE_COPPER_ORCHARD
+            echo "gate nova-alpha: $(wc -c </tmp/zone-a/INVOICE_COPPER_ORCHARD) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'INVOICE_COPPER_ORCHARD'
+  nova-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  TYZVPL-39484a:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Embed event stream mk4
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; stdbuf -oL echo 'spring summer autumn winter'; true ; } > /tmp/zone-a/hw_doc
+            echo "gate RUN_LAB: $(wc -c </tmp/zone-a/hw_doc) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'hw_doc'
+  RUN_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/spriteBundleScarlet
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  pool_internal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: INC mini map
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; cp /etc/hosts '/tmp/payroll_2025-08-02.tmp' && cmp /etc/hosts '/tmp/payroll_2025-08-02.tmp' && echo same; true ; } > /tmp/zone-a/stock.trade.kappa
+            echo "gate send-it: $(wc -c </tmp/zone-a/stock.trade.kappa) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'stock.trade.kappa'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/stock.trade.kappa
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  iQYiHDQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: optimize slow query log last
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; ps -eo rss= | sort -n | awk '{printf "%05d\n", $1}' | nl | sort; true ; } > /tmp/zone-a/ppfZ
+            echo "gate sirius-v2: $(wc -c </tmp/zone-a/ppfZ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'ppfZ'
+  sirius-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/ppfZ
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+  Sort-StubStatus:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Solo quarantine
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; cp /etc/os-release /tmp/scratch.tmp && sed -i.bak 's/^NAME=/OS_NAME=/' /tmp/scratch.tmp && tail -n 2 /tmp/scratch.tmp; true ; } > /tmp/zone-a/chromepolarproton
+            echo "gate LAB_RUN_3: $(wc -c </tmp/zone-a/chromepolarproton) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'chromepolarproton'
+  LAB_RUN_3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Read output
+          command: |
+            cat /tmp/zone-a/chromepolarproton
+      - run:
+          name: Pull latest
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract archive
+          command: tar -xf stage-assets-dev.tar
+      - run:
+          name: Stabilize
+          command: sleep 60
+      - run:
+          command: ls -la
+      - run:
+          command: ./flush-reducer
+
+  UIMutableRandom:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Smol reindex
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; date +%s%N | sha256sum | head -c 10; echo; true ; } > /tmp/zone-a/9bbagh4pmo44
+            echo "gate STAGE_LAB: $(wc -c </tmp/zone-a/9bbagh4pmo44) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '9bbagh4pmo44'
+  BaCK--buFFEr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: afterTeacherModelFineTuning
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; printf 'home\t19\ndebug\t41\ncake\t60\naddon\t95\n' >/tmp/local-studio.txt && sort -k2 -n /tmp/local-studio.txt; true ; } > /tmp/zone-a/meadowGadgetBond
+            echo "gate RUN_PROD: $(wc -c </tmp/zone-a/meadowGadgetBond) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'meadowGadgetBond'
+  UQ7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: week 39 export
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; find /var/tmp -maxdepth 2 -type f -links +1 -exec dirname {} \; 2>/dev/null | sort | head -n 8; true ; } > /tmp/zone-a/surgecloud
+            echo "gate yolo: $(wc -c </tmp/zone-a/surgecloud) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'surgecloud'
+  revertDecoratorByteDigest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: compress jpg
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; ls -l /usr/bin | awk '{print $5}' | sort -n | uniq -c | wc -w; true ; } > /tmp/zone-a/_wip285d2f
+            echo "gate helios: $(wc -c </tmp/zone-a/_wip285d2f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '_wip285d2f'
+  wbd7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: busy formatting weekly digest
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; cat /etc/hosts | grep -Hn --color=always host | sort | uniq -c; true ; } > /tmp/zone-a/4f551be1112ffc7dc852c367b30bf50
+            echo "gate canary: $(wc -c </tmp/zone-a/4f551be1112ffc7dc852c367b30bf50) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - '4f551be1112ffc7dc852c367b30bf50'
+  WIDTH969:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Move the needle on seeding
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; echo "won't fix" | tee /tmp/honey-trip-v3.note; true ; } > /tmp/zone-a/sb2axv6t
+            echo "gate succes-only: $(wc -c </tmp/zone-a/sb2axv6t) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'sb2axv6t'
+  echo-45:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: Second attempt kick off the worker fleet
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; shout() { echo "$#"; }; shout stub yellow set; true ; } > /tmp/zone-a/epoch-14p
+            echo "gate delta: $(wc -c </tmp/zone-a/epoch-14p) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'epoch-14p'
+  p6788:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Phase VII Tear Down The Blue Green Slots
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; grep -sRl export /etc/profile.d 2>/dev/null|tail -n 1; true ; } > /tmp/zone-a/iFXZz3PS5
+            echo "gate q2-canary: $(wc -c </tmp/zone-a/iFXZz3PS5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'iFXZz3PS5'
+  hi-LT-1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone-a
+      - run:
+          name: C366
+          command: |
+            mkdir -p /tmp/zone-a
+            { set +o pipefail 2>/dev/null; cat /proc/self/status | grep -h Vm | sort | uniq -c; true ; } > /tmp/zone-a/tradeGuestViolet
+            echo "gate defualt: $(wc -c </tmp/zone-a/tradeGuestViolet) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zone-a
+          paths:
+            - 'tradeGuestViolet'
+workflows:
+  ci:
+    jobs:
+      - B92E2
+      - mar12-ship:
+          requires:
+            - B92E2
+      - xray-lima-india:
+          requires:
+            - B92E2
+      - quebec:
+          requires:
+            - xray-lima-india
+      - Donuts:
+          requires:
+            - xray-lima-india
+      - mike:
+          requires:
+            - Donuts
+      - iQYiHDQ:
+          requires:
+            - Donuts
+      - sirius-v2:
+          requires:
+            - iQYiHDQ
+      - hvnouzWHV3l:
+          requires:
+            - iQYiHDQ
+      - fix-edge:
+          requires:
+            - hvnouzWHV3l
+      - subway_28231_invalid:
+          requires:
+            - hvnouzWHV3l
+      - v9-edge:
+          requires:
+            - subway_28231_invalid
+      - rmrmrmrm:
+          requires:
+            - subway_28231_invalid
+      - fiona-test:
+          requires:
+            - rmrmrmrm
+      - pool_internal
+      - v14-25-50
+      - send-it:
+          requires:
+            - pool_internal
+            - v14-25-50
+      - go-live:
+          requires:
+            - pool_internal
+            - v14-25-50
+      - wip-router:
+          requires:
+            - pool_internal
+            - v14-25-50
+      - Sort-StubStatus
+      - summer_074354
+      - LAB_RUN_3:
+          requires:
+            - Sort-StubStatus
+            - summer_074354
+      - PROD_STAGE_4:
+          requires:
+            - Sort-StubStatus
+            - summer_074354
+      - juliet:
+          requires:
+            - Sort-StubStatus
+            - summer_074354
+      - SinglePosTrait
+      - UIMutableRandom:
+          requires:
+            - SinglePosTrait
+      - STAGE_LAB:
+          requires:
+            - UIMutableRandom
+      - juliett-cursor:
+          requires:
+            - UIMutableRandom
+      - BaCK--buFFEr:
+          requires:
+            - juliett-cursor
+      - RUN_PROD:
+          requires:
+            - BaCK--buFFEr
+      - vr:
+          requires:
+            - BaCK--buFFEr
+      - UQ7:
+          requires:
+            - vr
+      - yolo:
+          requires:
+            - UQ7
+      - MAX_RATE
+      - v_vs_y
+      - TYZVPL-39484a
+      - v1-alpha4:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - tweak-queue:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - RUN_LAB:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - chore-839:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - juliet-7:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - vela-plus:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - vb-v2:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - nova-alpha:
+          requires:
+            - MAX_RATE
+            - v_vs_y
+            - TYZVPL-39484a
+      - saveMotorTax
+      - revertDecoratorByteDigest:
+          requires:
+            - saveMotorTax
+      - helios:
+          requires:
+            - revertDecoratorByteDigest
+      - attachActiveKeyTexture:
+          requires:
+            - revertDecoratorByteDigest
+      - wbd7:
+          requires:
+            - attachActiveKeyTexture
+      - canary:
+          requires:
+            - wbd7
+      - WK-NAME-SUB:
+          requires:
+            - wbd7
+      - WIDTH969:
+          requires:
+            - WK-NAME-SUB
+      - succes-only:
+          requires:
+            - WIDTH969
+      - dwFlagsDiscountClosedMenu:
+          requires:
+            - WIDTH969
+      - echo-45:
+          requires:
+            - dwFlagsDiscountClosedMenu
+      - delta:
+          requires:
+            - echo-45
+      - wArticle:
+          requires:
+            - echo-45
+      - p6788:
+          requires:
+            - wArticle
+      - q2-canary:
+          requires:
+            - p6788
+      - UOY-28649:
+          requires:
+            - p6788
+      - hi-LT-1:
+          requires:
+            - UOY-28649
+      - defualt:
+          requires:
+            - hi-LT-1
